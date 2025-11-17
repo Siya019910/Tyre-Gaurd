@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TyreGuard — Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#d6b45a;--red:#c62828;--black:#000}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,Arial,sans-serif;background:#111;color:#fff;line-height:1.4}
+  header{background:#000;padding:12px}
+  nav{display:flex;justify-content:center;gap:18px}
+  nav a{color:#fff;text-decoration:none;font-weight:600}
+  .container{max-width:980px;margin:28px auto;padding:16px}
+  .brand{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .brand .name{font-family:Pacifico,cursive;font-size:36px;font-weight:800;color:var(--black);background:#fff;padding:6px 10px;border-radius:8px}
+  .brand .slogan{font-style:italic;color:var(--black)}
+  .card{margin-top:20px;background:rgba(0,0,0,0.4);padding:18px;border-radius:10px}
+  .row{display:flex;gap:14px;align-items:center;margin:10px 0}
+  .label{min-width:90px;font-weight:700;color:var(--gold)}
+  .value a{color:#fff;text-decoration:none}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:2px solid rgba(214,180,90,0.6);background:linear-gradient(180deg, rgba(214,180,90,0.06), rgba(0,0,0,0.06));text-decoration:none;font-weight:700}
+  .svg-icon{width:18px;height:18px;display:inline-block;vertical-align:middle}
+  footer{background:#000;text-align:center;padding:12px;margin-top:28px;font-size:14px}
+  @media(max-width:700px){.brand .name{font-size:28px}.row{flex-direction:column;align-items:flex-start}.label{min-width:unset}}
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="brand">
+    <div class="name">TyreGuard</div>
+    <div class="slogan">"Unbreakable Confidence on Every Road."</div>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <div class="label">Address</div>
+      <div class="value">Clayville Ext 26, Oliefantsfontein Antimony Road 166</div>
+    </div>
+
+    <div class="row">
+      <div class="label">WhatsApp</div>
+      <div class="value"><a href="https://wa.me/27786282768" target="_blank" rel="noopener noreferrer">078 628 2768</a></div>
+    </div>
+
+    <div class="row">
+      <div class="label">Email</div>
+      <div class="value"><a href="mailto:mpumelelongwenya8711@gmail.com">mpumelelongwenya8711@gmail.com</a></div>
+    </div>
+
+    <div class="actions">
+      <a class="btn" href="https://wa.me/27786282768" target="_blank" rel="noopener noreferrer">
+        <!-- WhatsApp SVG -->
+        <svg class="svg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.373 0 0 5.373 0 12a11.9 11.9 0 0 0 1.63 6.02L0 24l5.99-1.57A11.94 11.94 0 0 0 12 24c6.627 0 11.999-5.373 11.999-12 0-3.2-1.233-6.19-3.479-8.52z" fill="currentColor" opacity="0.08"/>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.149-.672.15-.199.297-.768.966-.941 1.164-.173.199-.347.224-.644.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.607.134-.132.297-.347.446-.52.149-.173.199-.298.299-.497.099-.199.05-.373-.025-.522-.075-.148-.672-1.611-.921-2.203-.242-.579-.487-.5-.672-.51l-.573-.01c-.199 0-.522.074-.796.373s-1.04 1.016-1.04 2.479 1.064 2.876 1.213 3.074c.149.199 2.095 3.2 5.077 4.487 1.415.612 2.517.977 3.382 1.25 1.421.45 2.716.387 3.74.235.114-.053 1.758-.719 2.006-1.414.248-.697.248-1.294.173-1.414-.074-.12-.273-.199-.57-.347z" fill="#25D366"/>
+          <path d="M15.07 8.936c-.197-.099-.364-.148-.52.149-.148.248-.57.965-.699 1.164-.128.198-.255.223-.473.074-.218-.149-.919-.347-1.75-1.08-.647-.575-1.084-1.285-1.211-1.533-.128-.248-.014-.383.105-.51.108-.108.247-.28.371-.42.123-.14.164-.248.248-.413.083-.165.044-.31-.022-.439-.066-.13-.593-1.428-.813-1.957-.214-.512-.433-.443-.596-.451l-.514-.01c-.17 0-.445.064-.68.31s-.891.986-.891 2.41c0 1.424.91 2.797 1.037 2.99.128.198 2.001 3.054 4.847 4.238 1.414.58 2.359.773 3.192.992 1.003.278 1.915.24 2.64.146.087-.037 1.204-.494 1.376-1.182.175-.688.175-1.226.123-1.347-.053-.12-.2-.194-.408-.296-.208-.102-1.232-.598-1.418-.664-.187-.066-.323-.099-.52.05z" fill="#fff"/>
+        </svg>
+        WhatsApp
+      </a>
+
+      <a class="btn" href="mailto:mpumelelongwenya8711@gmail.com">
+        <!-- Email SVG -->
+        <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11z" fill="currentColor" opacity="0.08"/>
+          <path d="M20 6H4l8 6 8-6z" fill="#c62828"/>
+          <path d="M20 8.236l-8.47 6.352a1 1 0 0 1-1.06 0L2 8.236V17.5A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5V8.236z" fill="#fff"/>
+        </svg>
+        Email
+      </a>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 TyreGuard™ - Unbreakable Confidence on Every Road.
+</footer>
+</body>
+</html>

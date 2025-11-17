@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TyreGuard — Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --gold:#d6b45a; --red:#c62828; --black:#000; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:Inter, sans-serif; background:#111; color:#fff; }
+  header { background:#000; padding:15px; }
+  nav { display:flex; justify-content:center; gap:20px; }
+  nav a { color:#fff; text-decoration:none; font-weight:600; }
+  .container { padding:40px 20px; text-align:center; }
+  .business { font-family:Pacifico; font-size:40px; font-weight:800; color:#000; background:#fff; display:inline-block; padding:5px 10px; border-radius:6px; }
+  .slogan { font-style:italic; color:#000; margin-top:5px; background:#fff; display:inline-block; padding:2px 6px; border-radius:6px; }
+  .media-grid { margin-top:30px; display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); }
+  img, video { width:100%; border-radius:10px; border:2px solid var(--gold); }
+  footer { background:#000; text-align:center; padding:10px; margin-top:30px; font-size:14px; }
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="business">TyreGuard</div>
+  <div class="slogan">"Unbreakable Confidence on Every Road."</div>
+
+  <div class="media-grid">
+    <img src="gallery1.jpg" alt="Gallery Image 1">
+    <img src="gallery2.jpg" alt="Gallery Image 2">
+
+    <video controls>
+      <source src="video1.mp4" type="video/mp4">
+    </video>
+
+    <video controls>
+      <source src="video2.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<footer>
+  © 2025 TyreGuard™ - Unbreakable Confidence on Every Road.
+</footer>
+</body>
+</html>
