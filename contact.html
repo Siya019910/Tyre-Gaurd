@@ -6,25 +6,72 @@
 <title>TyreGuard — Contact</title>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{--gold:#d6b45a;--red:#c62828;--black:#000}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Inter,system-ui,Arial,sans-serif;background:#111;color:#fff;line-height:1.4}
-  header{background:#000;padding:12px}
-  nav{display:flex;justify-content:center;gap:18px}
-  nav a{color:#fff;text-decoration:none;font-weight:600}
-  .container{max-width:980px;margin:28px auto;padding:16px}
-  .brand{display:flex;flex-direction:column;align-items:center;gap:8px}
-  .brand .name{font-family:Pacifico,cursive;font-size:36px;font-weight:800;color:var(--black);background:#fff;padding:6px 10px;border-radius:8px}
-  .brand .slogan{font-style:italic;color:var(--black)}
-  .card{margin-top:20px;background:rgba(0,0,0,0.4);padding:18px;border-radius:10px}
-  .row{display:flex;gap:14px;align-items:center;margin:10px 0}
-  .label{min-width:90px;font-weight:700;color:var(--gold)}
-  .value a{color:#fff;text-decoration:none}
-  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:2px solid rgba(214,180,90,0.6);background:linear-gradient(180deg, rgba(214,180,90,0.06), rgba(0,0,0,0.06));text-decoration:none;font-weight:700}
-  .svg-icon{width:18px;height:18px;display:inline-block;vertical-align:middle}
-  footer{background:#000;text-align:center;padding:12px;margin-top:28px;font-size:14px}
-  @media(max-width:700px){.brand .name{font-size:28px}.row{flex-direction:column;align-items:flex-start}.label{min-width:unset}}
+:root{--gold:#d6b45a;--red:#c62828;--black:#000}
+*{box-sizing:border-box;margin:0;padding:0}
+html, body{height:100%; font-family:Inter,system-ui,Arial,sans-serif; color:#fff; line-height:1.4; margin:0;}
+
+/* Layout */
+body { display:flex; flex-direction:column; }
+header{background:#000;padding:12px}
+nav{display:flex;justify-content:center;gap:18px}
+nav a{color:#fff;text-decoration:none;font-weight:600}
+
+main.container{
+  position:relative;
+  flex:1; /* makes main grow to fill available space */
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:16px;
+  overflow:hidden;
+}
+
+/* Full-screen sliding background */
+main.container::before,
+main.container::after{
+  content:"";
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
+  background-size:cover;
+  background-position:center;
+  z-index:-1;
+  opacity:0;
+  animation: fade 6s infinite;
+}
+
+main.container::before{ background-image:url('img1.jpg'); animation-delay:0s; }
+main.container::after{ background-image:url('img2.jpg'); animation-delay:3s; }
+
+@keyframes fade{
+  0% {opacity:0;}
+  16.66% {opacity:1;}
+  50% {opacity:1;}
+  66.66% {opacity:0;}
+  100% {opacity:0;}
+}
+
+/* Content */
+.brand{display:flex;flex-direction:column;align-items:center;gap:8px}
+.brand .name{font-family:Pacifico,cursive;font-size:36px;font-weight:800;color:var(--black);background:#fff;padding:6px 10px;border-radius:8px}
+.brand .slogan{font-style:italic;color:var(--black)}
+
+.card{margin-top:20px;background:rgba(0,0,0,0.4);padding:18px;border-radius:10px}
+.row{display:flex;gap:14px;align-items:center;margin:10px 0}
+.label{min-width:90px;font-weight:700;color:var(--gold)}
+.value a{color:#fff;text-decoration:none}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:2px solid rgba(214,180,90,0.6);background:linear-gradient(180deg, rgba(214,180,90,0.06), rgba(0,0,0,0.06));text-decoration:none;font-weight:700}
+.svg-icon{width:18px;height:18px;display:inline-block;vertical-align:middle}
+
+/* Footer at bottom */
+footer{background:#000;text-align:center;padding:12px;font-size:14px}
+
+@media(max-width:700px){
+  .brand .name{font-size:28px}
+  .row{flex-direction:column;align-items:flex-start}
+  .label{min-width:unset}
+}
 </style>
 </head>
 <body>
@@ -79,10 +126,8 @@
         </svg>
         Email
       </a>
-
     </div>
   </div>
-
 </main>
 
 <footer>
