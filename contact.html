@@ -18,37 +18,24 @@ nav a{color:#fff;text-decoration:none;font-weight:600}
 
 main.container{
   position:relative;
-  flex:1; /* makes main grow to fill available space */
+  flex:1;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   padding:16px;
   overflow:hidden;
-}
-
-/* Full-screen sliding background */
-main.container::before,
-main.container::after{
-  content:"";
-  position:absolute;
-  top:0; left:0; width:100%; height:100%;
   background-size:cover;
   background-position:center;
-  z-index:-1;
-  opacity:0;
-  animation: fade 6s infinite;
+  animation: slideBg 12s infinite; /* 6s per image → 12s full cycle */
+  transition: background-image 1.5s ease-in-out;
 }
 
-main.container::before{ background-image:url('img1.jpg'); animation-delay:0s; }
-main.container::after{ background-image:url('img2.jpg'); animation-delay:3s; }
-
-@keyframes fade{
-  0% {opacity:0;}
-  16.66% {opacity:1;}
-  50% {opacity:1;}
-  66.66% {opacity:0;}
-  100% {opacity:0;}
+/* Full-screen background fade handled by keyframes */
+@keyframes slideBg{
+  0%   { background-image:url('img1.jpg'); }
+  50%  { background-image:url('img2.jpg'); }
+  100% { background-image:url('img1.jpg'); }
 }
 
 /* Content */
@@ -73,6 +60,7 @@ footer{background:#000;text-align:center;padding:12px;font-size:14px}
   .label{min-width:unset}
 }
 </style>
+
 </head>
 <body>
 <header>
@@ -135,5 +123,8 @@ footer{background:#000;text-align:center;padding:12px;font-size:14px}
 </footer>
 </body>
 </html>
+
+
+
 
 
