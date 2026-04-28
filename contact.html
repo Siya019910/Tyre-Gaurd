@@ -1,66 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TyreGuard — Contact</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#d6b45a;--red:#c62828;--black:#000}
-*{box-sizing:border-box;margin:0;padding:0}
-html, body{height:100%; font-family:Inter,system-ui,Arial,sans-serif; color:#fff; line-height:1.4; margin:0;}
-
-/* Layout */
-body { display:flex; flex-direction:column; }
-header{background:#000;padding:12px}
-nav{display:flex;justify-content:center;gap:18px}
-nav a{color:#fff;text-decoration:none;font-weight:600}
-
-main.container{
-  position:relative;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:16px;
+:root{--gold:#d6b45a;--red:#c62828;--black:#000;--gold-glow:rgba(214,180,90,0.35);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.06) 2px,rgba(0,0,0,0.06) 4px);pointer-events:none;z-index:9999;}
+body{font-family:'Rajdhani',sans-serif;color:#fff;display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;}
+ 
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,0.85);border-bottom:1px solid rgba(214,180,90,0.3);backdrop-filter:blur(12px);padding:14px 24px;}
+nav{display:flex;justify-content:center;gap:32px;}
+nav a{color:#fff;text-decoration:none;font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;position:relative;padding-bottom:4px;transition:color 0.3s;}
+nav a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;}
+nav a:hover{color:var(--gold);}
+nav a:hover::after{transform:scaleX(1);}
+ 
+.container{
+  flex:1;position:relative;overflow:hidden;
+  padding:110px 20px 60px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#000;background-size:cover;background-position:center;
+  animation:slideBg 12s infinite;
+}
+@keyframes slideBg{0%{background-image:url('img1.jpg');}50%{background-image:url('img2.jpg');}100%{background-image:url('img1.jpg');}}
+.container::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.68);pointer-events:none;z-index:0;}
+.container::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(214,180,90,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(214,180,90,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+ 
+.inner{position:relative;z-index:1;text-align:center;width:100%;max-width:560px;}
+ 
+.brand-badge{display:inline-block;background:#fff;padding:6px 16px;border-radius:6px;margin-bottom:8px;opacity:0;animation:fadeUp 0.6s 0.1s forwards;}
+.brand-badge .name{font-family:Pacifico,cursive;font-size:36px;color:#000;}
+.slogan{font-style:italic;color:#000;background:#fff;padding:3px 10px;border-radius:4px;display:inline-block;font-size:14px;margin-bottom:30px;opacity:0;animation:fadeUp 0.6s 0.3s forwards;}
+ 
+/* contact card */
+.card{
+  background:rgba(0,0,0,0.6);
+  border:1px solid rgba(214,180,90,0.25);
+  border-radius:10px;
   overflow:hidden;
-  background-size:cover;
-  background-position:center;
-  animation: slideBg 12s infinite; /* 6s per image → 12s full cycle */
-  transition: background-image 1.5s ease-in-out;
+  width:100%;
+  opacity:0;animation:fadeUp 0.7s 0.45s forwards;
 }
-
-/* Full-screen background fade handled by keyframes */
-@keyframes slideBg{
-  0%   { background-image:url('img1.jpg'); }
-  50%  { background-image:url('img2.jpg'); }
-  100% { background-image:url('img1.jpg'); }
+.card-header{
+  padding:12px 20px;
+  border-bottom:1px solid rgba(214,180,90,0.15);
+  background:rgba(214,180,90,0.06);
+  display:flex;align-items:center;gap:8px;
 }
-
-/* Content */
-.brand{display:flex;flex-direction:column;align-items:center;gap:8px}
-.brand .name{font-family:Pacifico,cursive;font-size:36px;font-weight:800;color:var(--black);background:#fff;padding:6px 10px;border-radius:8px}
-.brand .slogan{font-style:italic;color:var(--black)}
-
-.card{margin-top:20px;background:rgba(0,0,0,0.4);padding:18px;border-radius:10px}
-.row{display:flex;gap:14px;align-items:center;margin:10px 0}
-.label{min-width:90px;font-weight:700;color:var(--gold)}
-.value a{color:#fff;text-decoration:none}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:2px solid rgba(214,180,90,0.6);background:linear-gradient(180deg, rgba(214,180,90,0.06), rgba(0,0,0,0.06));text-decoration:none;font-weight:700}
-.svg-icon{width:18px;height:18px;display:inline-block;vertical-align:middle}
-
-/* Footer at bottom */
-footer{background:#000;text-align:center;padding:12px;font-size:14px}
-
-@media(max-width:700px){
-  .brand .name{font-size:28px}
-  .row{flex-direction:column;align-items:flex-start}
-  .label{min-width:unset}
+.card-header span{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:blink 1.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+ 
+.contact-rows{padding:8px 0;}
+ 
+.row{
+  display:flex;align-items:center;gap:16px;
+  padding:16px 20px;
+  border-bottom:1px solid rgba(214,180,90,0.1);
+  transition:background 0.2s;
 }
+.row:last-child{border-bottom:none;}
+.row:hover{background:rgba(214,180,90,0.05);}
+ 
+.row-icon{
+  width:38px;height:38px;flex-shrink:0;
+  border-radius:50%;border:1px solid rgba(214,180,90,0.3);
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.4);
+}
+.row-icon svg{width:18px;height:18px;}
+ 
+.row-body{text-align:left;flex:1;}
+.row-label{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.row-value{font-size:15px;font-weight:600;color:#fff;}
+.row-value a{color:#fff;text-decoration:none;}
+.row-value a:hover{color:var(--gold);}
+ 
+/* action buttons */
+.actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  padding:18px 20px;
+  border-top:1px solid rgba(214,180,90,0.15);
+  background:rgba(0,0,0,0.3);
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:999px;
+  border:2px solid rgba(214,180,90,0.5);
+  background:linear-gradient(135deg,rgba(214,180,90,0.1),rgba(0,0,0,0.2));
+  text-decoration:none;font-weight:700;font-size:11px;
+  letter-spacing:2px;text-transform:uppercase;color:#fff;
+  font-family:'Orbitron',sans-serif;
+  transition:all 0.3s;
+}
+.btn:hover{box-shadow:0 0 24px var(--gold-glow);transform:translateY(-2px);border-color:var(--gold);}
+.btn svg{width:16px;height:16px;}
+ 
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+footer{background:#000;text-align:center;padding:14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);border-top:1px solid rgba(214,180,90,0.15);}
+ 
+@media(max-width:500px){.brand-badge .name{font-size:28px;}.row{flex-direction:column;align-items:flex-start;}.row-icon{display:none;}}
 </style>
-
 </head>
 <body>
 <header>
@@ -71,60 +114,78 @@ footer{background:#000;text-align:center;padding:12px;font-size:14px}
     <a href="contact.html">Contact</a>
   </nav>
 </header>
-
-<main class="container">
-  <div class="brand">
-    <div class="name">TyreGuard</div>
+ 
+<div class="container">
+  <div class="inner">
+    <div class="brand-badge"><span class="name">TyreGuard</span></div>
     <div class="slogan">"Unbreakable Confidence on Every Road."</div>
+ 
+    <div class="card">
+      <div class="card-header">
+        <div class="dot"></div>
+        <span>Contact Information</span>
+      </div>
+ 
+      <div class="contact-rows">
+        <div class="row">
+          <div class="row-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div class="row-body">
+            <div class="row-label">Address</div>
+            <div class="row-value">Clayville Ext 26, Oliefantsfontein Antimony Road 166</div>
+          </div>
+        </div>
+ 
+        <div class="row">
+          <div class="row-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.373 0 0 5.373 0 12a11.9 11.9 0 0 0 1.63 6.02L0 24l5.99-1.57A11.94 11.94 0 0 0 12 24c6.627 0 11.999-5.373 11.999-12 0-3.2-1.233-6.19-3.479-8.52z" fill="rgba(37,211,102,0.15)"/>
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.149-.672.15-.199.297-.768.966-.941 1.164-.173.199-.347.224-.644.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.607.134-.132.297-.347.446-.52.149-.173.199-.298.299-.497.099-.199.05-.373-.025-.522-.075-.148-.672-1.611-.921-2.203-.242-.579-.487-.5-.672-.51l-.573-.01c-.199 0-.522.074-.796.373s-1.04 1.016-1.04 2.479 1.064 2.876 1.213 3.074c.149.199 2.095 3.2 5.077 4.487 1.415.612 2.517.977 3.382 1.25 1.421.45 2.716.387 3.74.235.114-.053 1.758-.719 2.006-1.414.248-.697.248-1.294.173-1.414-.074-.12-.273-.199-.57-.347z" fill="#25D366"/>
+            </svg>
+          </div>
+          <div class="row-body">
+            <div class="row-label">WhatsApp</div>
+            <div class="row-value"><a href="https://wa.me/27786282768" target="_blank" rel="noopener">078 628 2768</a></div>
+          </div>
+        </div>
+ 
+        <div class="row">
+          <div class="row-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </div>
+          <div class="row-body">
+            <div class="row-label">Email</div>
+            <div class="row-value"><a href="mailto:mpumelelongwenya8711@gmail.com">mpumelelongwenya8711@gmail.com</a></div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="actions">
+        <a class="btn" href="https://wa.me/27786282768" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.149-.672.15-.199.297-.768.966-.941 1.164-.173.199-.347.224-.644.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.607.134-.132.297-.347.446-.52.149-.173.199-.298.299-.497.099-.199.05-.373-.025-.522-.075-.148-.672-1.611-.921-2.203-.242-.579-.487-.5-.672-.51l-.573-.01c-.199 0-.522.074-.796.373s-1.04 1.016-1.04 2.479 1.064 2.876 1.213 3.074c.149.199 2.095 3.2 5.077 4.487 1.415.612 2.517.977 3.382 1.25 1.421.45 2.716.387 3.74.235.114-.053 1.758-.719 2.006-1.414.248-.697.248-1.294.173-1.414-.074-.12-.273-.199-.57-.347z" fill="#25D366"/>
+          </svg>
+          WhatsApp
+        </a>
+        <a class="btn" href="mailto:mpumelelongwenya8711@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <polyline points="2,4 12,13 22,4"/>
+          </svg>
+          Email
+        </a>
+      </div>
+    </div>
   </div>
-
-  <div class="card">
-    <div class="row">
-      <div class="label">Address</div>
-      <div class="value">Clayville Ext 26, Oliefantsfontein Antimony Road 166</div>
-    </div>
-
-    <div class="row">
-      <div class="label">WhatsApp</div>
-      <div class="value"><a href="https://wa.me/27786282768" target="_blank" rel="noopener noreferrer">078 628 2768</a></div>
-    </div>
-
-    <div class="row">
-      <div class="label">Email</div>
-      <div class="value"><a href="mailto:mpumelelongwenya8711@gmail.com">mpumelelongwenya8711@gmail.com</a></div>
-    </div>
-
-    <div class="actions">
-      <a class="btn" href="https://wa.me/27786282768" target="_blank" rel="noopener noreferrer">
-        <!-- WhatsApp SVG -->
-        <svg class="svg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.373 0 0 5.373 0 12a11.9 11.9 0 0 0 1.63 6.02L0 24l5.99-1.57A11.94 11.94 0 0 0 12 24c6.627 0 11.999-5.373 11.999-12 0-3.2-1.233-6.19-3.479-8.52z" fill="currentColor" opacity="0.08"/>
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.149-.672.15-.199.297-.768.966-.941 1.164-.173.199-.347.224-.644.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.607.134-.132.297-.347.446-.52.149-.173.199-.298.299-.497.099-.199.05-.373-.025-.522-.075-.148-.672-1.611-.921-2.203-.242-.579-.487-.5-.672-.51l-.573-.01c-.199 0-.522.074-.796.373s-1.04 1.016-1.04 2.479 1.064 2.876 1.213 3.074c.149.199 2.095 3.2 5.077 4.487 1.415.612 2.517.977 3.382 1.25 1.421.45 2.716.387 3.74.235.114-.053 1.758-.719 2.006-1.414.248-.697.248-1.294.173-1.414-.074-.12-.273-.199-.57-.347z" fill="#25D366"/>
-          <path d="M15.07 8.936c-.197-.099-.364-.148-.52.149-.148.248-.57.965-.699 1.164-.128.198-.255.223-.473.074-.218-.149-.919-.347-1.75-1.08-.647-.575-1.084-1.285-1.211-1.533-.128-.248-.014-.383.105-.51.108-.108.247-.28.371-.42.123-.14.164-.248.248-.413.083-.165.044-.31-.022-.439-.066-.13-.593-1.428-.813-1.957-.214-.512-.433-.443-.596-.451l-.514-.01c-.17 0-.445.064-.68.31s-.891.986-.891 2.41c0 1.424.91 2.797 1.037 2.99.128.198 2.001 3.054 4.847 4.238 1.414.58 2.359.773 3.192.992 1.003.278 1.915.24 2.64.146.087-.037 1.204-.494 1.376-1.182.175-.688.175-1.226.123-1.347-.053-.12-.2-.194-.408-.296-.208-.102-1.232-.598-1.418-.664-.187-.066-.323-.099-.52.05z" fill="#fff"/>
-        </svg>
-        WhatsApp
-      </a>
-
-      <a class="btn" href="mailto:mpumelelongwenya8711@gmail.com">
-        <!-- Email SVG -->
-        <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11z" fill="currentColor" opacity="0.08"/>
-          <path d="M20 6H4l8 6 8-6z" fill="#c62828"/>
-          <path d="M20 8.236l-8.47 6.352a1 1 0 0 1-1.06 0L2 8.236V17.5A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5V8.236z" fill="#fff"/>
-        </svg>
-        Email
-      </a>
-    </div>
-  </div>
-</main>
-
-<footer>
-  © 2025 TyreGuard™ - Unbreakable Confidence on Every Road.
-</footer>
+</div>
+ 
+<footer>© 2025 TyreGuard™ — Unbreakable Confidence on Every Road.</footer>
 </body>
 </html>
-
-
-
-
-
