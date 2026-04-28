@@ -4,84 +4,108 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TyreGuard — Gallery</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root { --gold:#d6b45a; --black:#000; }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:Inter, sans-serif; color:#fff; margin:0; }
-
-header { background:#000; padding:15px; }
-nav { display:flex; justify-content:center; gap:20px; }
-nav a { color:#fff; text-decoration:none; font-weight:600; }
-
-.container {
-  position: relative;
-  padding:40px 20px;
+:root{--gold:#d6b45a;--red:#c62828;--black:#000;--gold-glow:rgba(214,180,90,0.35);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.06) 2px,rgba(0,0,0,0.06) 4px);pointer-events:none;z-index:9999;}
+body{font-family:'Rajdhani',sans-serif;color:#fff;overflow-x:hidden;display:flex;flex-direction:column;min-height:100vh;}
+ 
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,0.85);border-bottom:1px solid rgba(214,180,90,0.3);backdrop-filter:blur(12px);padding:14px 24px;}
+nav{display:flex;justify-content:center;gap:32px;}
+nav a{color:#fff;text-decoration:none;font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;position:relative;padding-bottom:4px;transition:color 0.3s;}
+nav a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;}
+nav a:hover{color:var(--gold);}
+nav a:hover::after{transform:scaleX(1);}
+ 
+.container{
+  flex:1;
+  position:relative;overflow:hidden;
+  padding:110px 24px 60px;
+  background:#000;background-size:cover;background-position:center;
+  animation:slideBg 12s infinite;
   text-align:center;
-  min-height:90vh;
-  background-size:cover;
-  background-position:center;
-  animation: slideBg 12s infinite; /* 6s per image → 12s full cycle */
-  transition: background-image 1.5s ease-in-out;
 }
-
-@keyframes slideBg {
-  0%   { background-image: url('img1.jpg'); }
-  50%  { background-image: url('img2.jpg'); }
-  100% { background-image: url('img1.jpg'); }
-}
-
-.business {
-  font-family:Pacifico;
-  font-size:40px;
-  font-weight:800;
-  color:#000;
-  background:#fff;
-  display:inline-block;
-  padding:5px 10px;
-  border-radius:6px;
-}
-
-.slogan {
-  font-style:italic;
-  color:#000;
-  margin-top:5px;
-  background:#fff;
-  display:inline-block;
-  padding:2px 6px;
-  border-radius:6px;
-}
-
-.media-grid {
-  margin-top:30px;
+@keyframes slideBg{0%{background-image:url('img1.jpg');}50%{background-image:url('img2.jpg');}100%{background-image:url('img1.jpg');}}
+.container::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.72);pointer-events:none;z-index:0;}
+.container::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(214,180,90,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(214,180,90,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+ 
+.inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;}
+ 
+.brand-badge{display:inline-block;background:#fff;padding:6px 16px;border-radius:6px;margin-bottom:8px;opacity:0;animation:fadeUp 0.6s 0.1s forwards;}
+.brand-badge .name{font-family:Pacifico,cursive;font-size:40px;color:#000;}
+.slogan{font-style:italic;color:#000;background:#fff;padding:3px 10px;border-radius:4px;display:inline-block;font-size:14px;margin-bottom:36px;opacity:0;animation:fadeUp 0.6s 0.3s forwards;}
+ 
+.section-head{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:28px;opacity:0;animation:fadeUp 0.6s 0.45s forwards;}
+.section-head h2{font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);}
+.section-head::before,.section-head::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(214,180,90,0.5));}
+.section-head::after{background:linear-gradient(to left,transparent,rgba(214,180,90,0.5));}
+ 
+/* gallery grid */
+.media-grid{
   display:grid;
-  gap:20px;
-  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 }
-
-.media-grid img,
-.media-grid video {
-  width:100%;
-  border-radius:10px;
-  border:2px solid var(--gold);
-  display:block;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+ 
+.media-item{
+  position:relative;
+  border-radius:8px;
+  overflow:hidden;
+  border:1px solid rgba(214,180,90,0.25);
+  cursor:pointer;
+  opacity:0;
+  transition:border-color 0.3s,box-shadow 0.3s;
 }
-
-.media-grid img:hover,
-.media-grid video:hover {
-  transform: scale(1.1);
+.media-item:nth-child(1){animation:fadeUp 0.5s 0.5s forwards;}
+.media-item:nth-child(2){animation:fadeUp 0.5s 0.6s forwards;}
+.media-item:nth-child(3){animation:fadeUp 0.5s 0.7s forwards;}
+.media-item:nth-child(4){animation:fadeUp 0.5s 0.8s forwards;}
+.media-item:nth-child(5){animation:fadeUp 0.5s 0.9s forwards;}
+.media-item:nth-child(6){animation:fadeUp 0.5s 1.0s forwards;}
+ 
+.media-item:hover{border-color:var(--gold);box-shadow:0 8px 32px var(--gold-glow);}
+ 
+.media-item img,.media-item video{
+  width:100%;display:block;
+  transition:transform 0.4s ease;
 }
-
-footer {
-  background:#000;
-  text-align:center;
-  padding:10px;
-  font-size:14px;
+.media-item:hover img,.media-item:hover video{transform:scale(1.06);}
+ 
+/* hover overlay */
+.media-item .overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.55),transparent);
+  opacity:0;transition:opacity 0.3s;
+  display:flex;align-items:flex-end;padding:14px;
 }
+.media-item:hover .overlay{opacity:1;}
+.overlay-label{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+ 
+/* lightbox */
+.lightbox{
+  display:none;position:fixed;inset:0;z-index:10000;
+  background:rgba(0,0,0,0.93);
+  align-items:center;justify-content:center;
+}
+.lightbox.open{display:flex;}
+.lightbox img,.lightbox video{
+  max-width:90vw;max-height:85vh;
+  border:2px solid rgba(214,180,90,0.4);
+  border-radius:8px;
+}
+.lightbox-close{
+  position:absolute;top:24px;right:28px;
+  font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gold);cursor:pointer;
+  border:1px solid rgba(214,180,90,0.4);padding:8px 16px;border-radius:4px;
+}
+.lightbox-close:hover{background:rgba(214,180,90,0.1);}
+ 
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+ 
+footer{background:#000;text-align:center;padding:14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);border-top:1px solid rgba(214,180,90,0.15);}
 </style>
-
 </head>
 <body>
 <header>
@@ -92,33 +116,62 @@ footer {
     <a href="contact.html">Contact</a>
   </nav>
 </header>
-
+ 
 <div class="container">
-  <div class="business">TyreGuard</div>
-  <div class="slogan">"Unbreakable Confidence on Every Road."</div>
-
-  <div class="media-grid">
-
-    <!-- These must be in the SAME folder as gallery.html -->
-    <img src="gallery1.jpg" alt="Image 1">
-    <img src="gallery2.jpg" alt="Image 2">
-    <img src="gallery3.jpg" alt="Image 3">
-    <img src="gallery4.jpg" alt="Image 4">
-
-    <!-- Videos must also be in the SAME folder -->
-    <video controls>
-      <source src="video1.mp4" type="video/mp4">
-    </video>
-
-    <video controls>
-      <source src="video2.mp4" type="video/mp4">
-    </video>
-
+  <div class="inner">
+    <div class="brand-badge"><span class="name">TyreGuard</span></div>
+    <div class="slogan">"Unbreakable Confidence on Every Road."</div>
+ 
+    <div class="section-head"><h2>Our Gallery</h2></div>
+ 
+    <div class="media-grid">
+      <div class="media-item" onclick="openLightbox('img','gallery1.jpg')">
+        <img src="gallery1.jpg" alt="Image 1">
+        <div class="overlay"><span class="overlay-label">View</span></div>
+      </div>
+      <div class="media-item" onclick="openLightbox('img','gallery2.jpg')">
+        <img src="gallery2.jpg" alt="Image 2">
+        <div class="overlay"><span class="overlay-label">View</span></div>
+      </div>
+      <div class="media-item" onclick="openLightbox('img','gallery3.jpg')">
+        <img src="gallery3.jpg" alt="Image 3">
+        <div class="overlay"><span class="overlay-label">View</span></div>
+      </div>
+      <div class="media-item" onclick="openLightbox('img','gallery4.jpg')">
+        <img src="gallery4.jpg" alt="Image 4">
+        <div class="overlay"><span class="overlay-label">View</span></div>
+      </div>
+      <div class="media-item">
+        <video controls><source src="video1.mp4" type="video/mp4"></video>
+        <div class="overlay"><span class="overlay-label">Play</span></div>
+      </div>
+      <div class="media-item">
+        <video controls><source src="video2.mp4" type="video/mp4"></video>
+        <div class="overlay"><span class="overlay-label">Play</span></div>
+      </div>
+    </div>
   </div>
 </div>
-
-<footer>
-  © 2025 TyreGuard™ - Unbreakable Confidence on Every Road.
-</footer>
+ 
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕ Close</span>
+  <img id="lb-img" src="" alt="" style="display:none">
+</div>
+ 
+<footer>© 2025 TyreGuard™ — Unbreakable Confidence on Every Road.</footer>
+ 
+<script>
+function openLightbox(type, src){
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lb-img');
+  img.src = src;img.style.display='block';
+  lb.classList.add('open');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lb-img').style.display='none';
+}
+</script>
 </body>
 </html>
